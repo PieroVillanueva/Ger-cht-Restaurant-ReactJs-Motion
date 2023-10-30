@@ -11,7 +11,9 @@
   --color-grey: #AAAAAA;
   --color-white: #FFFFFF;
 }
-
+body{
+  background-color: var(--color-black);
+}
 * {
   box-sizing: border-box;
   padding: 0;

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { motion } from "framer-motion";
+import { fadeIn, container, slideInStagged, slideIn } from "../../utils/motion";
 
 import images from "../../constants/images";
 
@@ -9,28 +11,42 @@ import "./Navbar.css";
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   return (
-    <nav className="app__navbar">
-      <div className="app__navbar-logo">
+    <motion.nav
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.25 }}
+      className="app__navbar"
+    >
+      <motion.div
+        variants={fadeIn("right", "tween", 0.2, 0.5)}
+        className="app__navbar-logo"
+      >
         <img src={images.gericht} alt="app Logo" />
-      </div>
+      </motion.div>
+
       <ul className="app__navbar-links">
-        <li className="p__opensans">
+        <motion.li variants={slideInStagged("down")} className="p__opensans">
           <a href="#home">Home</a>
-        </li>
-        <li className="p__opensans">
+        </motion.li>
+        <motion.li variants={slideInStagged("down")} className="p__opensans">
           <a href="#about">About</a>
-        </li>
-        <li className="p__opensans">
+        </motion.li>
+        <motion.li variants={slideInStagged("down")} className="p__opensans">
           <a href="#menu">Menu</a>
-        </li>
-        <li className="p__opensans">
+        </motion.li>
+        <motion.li variants={slideInStagged("down")} className="p__opensans">
           <a href="#awards">Awards</a>
-        </li>
-        <li className="p__opensans">
+        </motion.li>
+        <motion.li variants={slideInStagged("down")} className="p__opensans">
           <a href="#contact">Contact</a>
-        </li>
+        </motion.li>
       </ul>
-      <div className="app__navbar-login">
+
+      <motion.div
+        variants={fadeIn("left", "tween", 0.2, 0.5)}
+        className="app__navbar-login"
+      >
         <a href="#login" className="p__opensans">
           Log In / Register
         </a>
@@ -38,41 +54,70 @@ const Navbar = () => {
         <a href="/" className="p__opensans">
           Book table
         </a>
-      </div>
+      </motion.div>
       <div className="app__navbar-smallscreen">
-        <GiHamburgerMenu
-          color="#fff"
-          fontSize={27}
-          onClick={() => setToggleMenu(true)}
-        />
+        <motion.Fragment variants={fadeIn("left", "tween", 0.2, 0.5)}>
+          <GiHamburgerMenu
+            color="#fff"
+            fontSize={27}
+            style={{ cursor: "pointer" }}
+            onClick={() => setToggleMenu(true)}
+          />
+        </motion.Fragment>
+
         {toggleMenu && (
-          <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
-            <MdOutlineRestaurantMenu
-              fontSize={27}
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.25 }}
+            className="app__navbar-smallscreen_overlay flex__center "
+          >
+            <motion.Fragment
+              variants={slideInStagged("down")}
               className="overlay__close"
-              onClick={() => setToggleMenu(false)}
-            />
+            >
+              <MdOutlineRestaurantMenu
+                fontSize={27}
+                onClick={() => setToggleMenu(false)}
+              />
+            </motion.Fragment>
             <ul className="app__navbar-smallscreen_links">
-              <li className="p__opensans">
+              <motion.li
+                variants={slideInStagged("down")}
+                className="p__opensans"
+              >
                 <a href="#home">Home</a>
-              </li>
-              <li className="p__opensans">
+              </motion.li>
+              <motion.li
+                variants={slideInStagged("down")}
+                className="p__opensans"
+              >
                 <a href="#about">About</a>
-              </li>
-              <li className="p__opensans">
+              </motion.li>
+              <motion.li
+                variants={slideInStagged("down")}
+                className="p__opensans"
+              >
                 <a href="#menu">Menu</a>
-              </li>
-              <li className="p__opensans">
+              </motion.li>
+              <motion.li
+                variants={slideInStagged("down")}
+                className="p__opensans"
+              >
                 <a href="#awards">Awards</a>
-              </li>
-              <li className="p__opensans">
+              </motion.li>
+              <motion.li
+                variants={slideInStagged("down")}
+                className="p__opensans"
+              >
                 <a href="#contact">Contact</a>
-              </li>
+              </motion.li>
             </ul>
-          </div>
+          </motion.div>
         )}
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

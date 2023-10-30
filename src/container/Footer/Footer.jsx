@@ -4,6 +4,9 @@ import { FooterOverlay, Newsletter } from "../../components";
 
 import "./Footer.css";
 import { images } from "../../constants";
+import { motion } from "framer-motion";
+import { Fragment } from "react";
+import { fadeIn, container, slideInStagged, slideIn } from "../../utils/motion";
 
 const Footer = () => {
   return (
@@ -12,44 +15,123 @@ const Footer = () => {
       <Newsletter />
 
       <div className="app__footer-links" style={{ zIndex: "2" }}>
-        <div className="app__footer-links_contact">
-          <h1 className="app__footer-headtext">Contact us</h1>
-          <p className="p__opensans grey">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="app__footer-links_contact"
+        >
+          <motion.h1
+            variants={slideInStagged("down")}
+            className="app__footer-headtext"
+          >
+            Contact us
+          </motion.h1>
+          <motion.p
+            variants={slideInStagged("down")}
+            className="p__opensans grey"
+          >
             9 W 53rd St, New York, NY 10019, USA
-          </p>
-          <p className="p__opensans grey">+1 212-344-1230</p>
-          <p className="p__opensans grey">+1 212-555-1230</p>
-        </div>
-        <div className="app__footer-links_logo">
-          <img src={images.gericht} alt="footer_logo" />
-          <p className="p__opensans">
+          </motion.p>
+          <motion.p
+            variants={slideInStagged("down")}
+            className="p__opensans grey"
+          >
+            +1 212-344-1230
+          </motion.p>
+          <motion.p
+            variants={slideInStagged("down")}
+            className="p__opensans grey"
+          >
+            +1 212-555-1230
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="app__footer-links_logo"
+        >
+          <motion.img
+            variants={slideInStagged("down")}
+            src={images.gericht}
+            alt="footer_logo"
+          />
+          <motion.p variants={slideInStagged("down")} className="p__opensans">
             "The best way to find yourseft is to lose yourself in the service of
             others"
-          </p>
-          <img
+          </motion.p>
+          <motion.img
+            variants={slideInStagged("down")}
             src={images.spoon}
             alt="spoon"
             className="spoon__img"
             style={{ marginTop: "15px" }}
           />
           <div className="app__footer-links_icons">
-            <FiFacebook />
-            <FiTwitter />
-            <FiInstagram />
+            <motion.Fragment variants={slideInStagged("down")}>
+              <FiFacebook />
+            </motion.Fragment>
+            <motion.Fragment variants={slideInStagged("down")}>
+              <FiTwitter />
+            </motion.Fragment>
+            <motion.Fragment variants={slideInStagged("down")}>
+              <FiInstagram />
+            </motion.Fragment>
           </div>
-        </div>
-        <div className="app__footer-links_work">
-          <h1 className="app__footer-headtext">Working Hours</h1>
-          <p className="p__opensans grey">Monday-Friday</p>
-          <p className="p__opensans grey">08:00am - 12:00am</p>
-          <p className="p__opensans grey">Saturday-Sunday</p>
-          <p className="p__opensans grey">07:00am - 11:00pm</p>
-        </div>
+        </motion.div>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="app__footer-links_work"
+        >
+          <motion.h1
+            variants={slideInStagged("down")}
+            className="app__footer-headtext"
+          >
+            Working Hours
+          </motion.h1>
+          <motion.p
+            variants={slideInStagged("down")}
+            className="p__opensans grey"
+          >
+            Monday-Friday
+          </motion.p>
+          <motion.p
+            variants={slideInStagged("down")}
+            className="p__opensans grey"
+          >
+            08:00am - 12:00am
+          </motion.p>
+          <motion.p
+            variants={slideInStagged("down")}
+            className="p__opensans grey"
+          >
+            Saturday-Sunday
+          </motion.p>
+          <motion.p
+            variants={slideInStagged("down")}
+            className="p__opensans grey"
+          >
+            07:00am - 11:00pm
+          </motion.p>
+        </motion.div>
       </div>
       <div className="footer__copyright" style={{ zIndex: "2" }}>
-        <p className="p__opensans grey">
+        <motion.p
+          variants={slideIn("down", "tween", 0.8, 0.5)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="p__opensans grey"
+        >
           {new Date().getFullYear()} Gerícht. All Rights Reserved
-        </p>
+        </motion.p>
       </div>
     </div>
   );

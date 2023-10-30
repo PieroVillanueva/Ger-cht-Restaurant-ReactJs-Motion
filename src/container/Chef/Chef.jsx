@@ -1,18 +1,43 @@
 import "./Chef.css";
 import { images } from "../../constants";
-import { SubHeading } from "../../components";
+import { SubHeading, TypingText } from "../../components";
+import { motion } from "framer-motion";
+import { fadeIn, container, slideInStagged } from "../../utils/motion";
 
 const Chef = () => {
   return (
     <div className="app__bg app__wrapper section__padding">
       <div className="app__wrapper_img app__wrapper_img-reverse">
-        <img src={images.chef} alt="chef" />
+        <motion.img
+          variants={fadeIn("right", "tween", 0.1, 0.5)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          src={images.chef}
+          alt="chef"
+        />
       </div>
-      <div className="app__wrapper_info">
-        <SubHeading title={"Chef's Word"} />
-        <h1 className="headtext__cormorant">What We Belive In</h1>
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        className="app__wrapper_info"
+      >
+        <motion.div variants={slideInStagged("right")}>
+          <SubHeading title={"Chef's Word"} />
+        </motion.div>
+        <motion.h1
+          variants={slideInStagged("right")}
+          className="headtext__cormorant"
+        >
+          What We Belive In
+        </motion.h1>
 
-        <div className="app__chef-content">
+        <motion.div
+          variants={slideInStagged("right")}
+          className="app__chef-content"
+        >
           <div className="app__chef-content_quote">
             <img src={images.quote} alt="quote" />
             <p className="p__opensans" style={{ color: "#AAA" }}>
@@ -27,16 +52,22 @@ const Chef = () => {
             molestie lectus eu. Congue iaculis integer curabitur semper sit
             nunc.
           </p>
-        </div>
+        </motion.div>
 
         <div className="app__chef-sign">
-          <p>Kevin Luo</p>
-          <p className="p__opensans" style={{ color: "#AAA" }}>
-            Chef & Founder
-          </p>
-          <img src={images.sign} alt="sign" />
+          <TypingText title={"Kevin Luo"} classname={"parrafo"} />
+
+          <TypingText
+            title={"Chef & Founder"}
+            classname={"p__opensans color-claro"}
+          />
+          <motion.img
+            variants={slideInStagged("right")}
+            src={images.sign}
+            alt="sign"
+          />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
